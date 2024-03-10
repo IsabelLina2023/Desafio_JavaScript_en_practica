@@ -42,62 +42,62 @@
                     <button id="botton" type="submit">
                         Envía un mensajito
                     </button>
+                    <p class="resultado h4"></p>
                 </div>
             </form>
         </div>
     </div>
     <script>
- let form = document.getElementById("formulario")
+        let form = document.getElementById('formulario')
 
-form.addEventListener("submit", function (event) {
-    event.preventDefault()
-    limpiarErrores()
-    let textNombre =
-        document.querySelector("#nombre").value
-    let textTelefono =
-        document.querySelector("#asunto").value
-    let textEmail =
-        document.querySelector("#mensaje").value
-    let resultado =
-        validar(textNombre, textTelefono, textEmail)
-    if (resultado == true) {
-        exito()
-    }
-})
+        form.addEventListener('submit', function (event) {
+            event.preventDefault()
+            limpiarErrores()
+            let textNombre =
+                document.querySelector('#nombre').value
+            let textAsunto =
+                document.querySelector('#asunto').value
+            let textMensaje =
+                document.querySelector('#mensaje').value
+            let resultado =
+                validar(textNombre, textAsunto, textMensaje)
+            if (resultado == true) {
+                exito()
+            }
+        })
 
-function limpiarErrores() {
-    document.querySelector(".resultado").innerHTML = ""
-    document.querySelector(".errorNombre").innerHTML = ""
-    document.querySelector(".errorTelefono").innerHTML = ""
-    document.querySelector(".errorEmail").innerHTML = ""
-}
+        function limpiarErrores() {
+            document.querySelector('#nombre').innerHTML = ""
+            document.querySelector('#asunto').innerHTML = ""
+            document.querySelector('#mensaje').innerHTML = ""
+        }
 
-function exito() {
-    document.querySelector(".resultado").innerHTML = "Formulario pasó la validación"
-}
+        function exito() {
+            document.querySelector('.resultado').innerHTML = "El formulario fue enviado exitosamente"
+        }
 
-function validar(nombre, telefono, email) {
-    let pasamosLaValidacion = true
+        function validar(nombre, asunto, mensaje) {
+            let validada = true
 
-    const validacionNombre = /[a-zA-Z]/gim
-    if (validacionNombre.test(nombre) == false) {
-        document.querySelector(".errorNombre").innerHTML = "Ingrese un nombre válido."
-        pasamosLaValidacion = false
-    }
+            const validacionNombre = /^[A-Za-z\s]+$/gim
+            if (validacionNombre.test(nombre) == false) {
+                document.querySelector('.errorNombre').innerHTML = "El nombre es requerido."
+                validada = false
+            }
 
-    let validacionTelefono = /\d/gim
-    if (validacionTelefono.test(telefono) == false) {
-        document.querySelector(".errorTelefono").innerHTML = "Ingrese un teléfono válido(sólo números)."
-        pasamosLaValidacion = false
-    }
+            const validacionAsunto= /^[A-Za-z\s]+$/gim
+            if (validacionAsunto.test(asunto) == false) {
+                document.querySelector('.errorAsunto').innerHTML = "El asunto es requerido."
+                validada = false
+            }
 
-    let validaciónEmail = /[A-Z0-9._%+-]+@[A-Z0-9-]+.[A-Z]/gim
-    if (validaciónEmail.test(email) == false) {
-        document.querySelector(".errorEmail").innerHTML = "Ingrese un correo válido."
-        pasamosLaValidacion = false
-    }
-    return pasamosLaValidacion
-}
+            const validacionMensaje = /^[A-Za-z\s]+$/gim
+            if (validacionMensaje.test(mensaje) == false) {
+                document.querySelector('.errorMensaje').innerHTML = "El mensaje es requerido."
+                validada = false
+            }
+            return validada
+        }
 
     </script>
 </body>
